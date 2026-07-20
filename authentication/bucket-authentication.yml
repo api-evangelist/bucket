@@ -1,0 +1,41 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.reflag.com/api/api-access + openapi/bucket-management-openapi-original.json
+docs: https://docs.reflag.com/api/api-access
+summary:
+  types:
+  - http
+  api_key_in:
+  - header
+  - query
+  oauth2_flows: []
+  note: >-
+    Bearer-token (API-key) auth across both APIs; no per-operation OAuth scopes in
+    the spec. App login (not the API) uses OAuth 2.0 / OIDC via Clerk.
+schemes:
+- name: APIKey
+  type: http
+  scheme: bearer
+  description: API key authentication, for service access (Management API)
+  sources:
+  - openapi/bucket-management-openapi-original.json
+keys:
+  runtime_api:
+  - name: Publishable key
+    usage: client-side (web/mobile/public apps)
+    transport: Authorization Bearer, or ?publishableKey= query parameter
+    scope: environment-specific; safe to expose; limited permissions
+  - name: Secret key
+    usage: server-side only
+    transport: Authorization Bearer only
+    scope: environment-specific; grants targeting definitions and secret flags
+  management_api:
+  - name: API key
+    usage: server-side / CI-CD (e.g. Reflag CLI)
+    transport: Authorization Bearer
+    scope: app-scoped, usable across all environments; scoped permissions selected at creation
+identity_provider:
+  name: Clerk
+  oauth_metadata: https://app.reflag.com/.well-known/oauth-authorization-server
+  oidc_discovery: https://clerk.reflag.com/.well-known/openid-configuration
+  note: OAuth 2.0 / OIDC for dashboard login, not for API access.

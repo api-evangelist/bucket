@@ -1,0 +1,43 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.reflag.com/api/api-access + /api/public-api + /api/reflag-rest-api + openapi/bucket-management-openapi-original.json
+authentication:
+  style: bearer
+  runtime_api:
+    publishable_key: client-side, Authorization Bearer or ?publishableKey= query param
+    secret_key: server-side only, Authorization Bearer
+    scope: keys are environment-specific
+  management_api:
+    api_key: Authorization Bearer; app-scoped; usable across all environments; scoped permissions
+  cross_ref: authentication/bucket-authentication.yml
+idempotency:
+  supported: false
+  note: >-
+    No idempotency-key header or parameter is documented for either API. The
+    Runtime API offers a POST /bulk endpoint for batching multiple calls, but no
+    idempotency contract is published. Do not assume replay safety.
+pagination:
+  style: none-observed
+  note: >-
+    Management API list endpoints (listApps, listFlags, listEnvironments) expose
+    no cursor/offset/limit parameters in the OpenAPI; collections are returned in
+    full. Sorting is not parameterized in the published spec.
+versioning:
+  style: openapi-info-version + semver SDKs
+  cross_ref: lifecycle/bucket-lifecycle.yml
+error_envelope:
+  format: provider-json
+  shape: '{ error: { code, message }, issues?: { field: [messages] } }'
+  cross_ref: errors/bucket-error-codes.yml
+request_tracing:
+  request_id_header: not-documented
+rate_limiting:
+  headers: not-documented
+  note: Runtime API is globally routed for low latency; contact support for >100ms latency.
+data_residency:
+  eu_endpoint: https://front-eu.reflag.com
+content_type:
+  requests: application/json (Content-Type required on POST)
+  responses: application/json
+batching:
+  endpoint: POST /bulk (Runtime API) — send multiple calls in one request

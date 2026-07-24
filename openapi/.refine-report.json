@@ -1,0 +1,14 @@
+{
+  "provider": "bucket",
+  "sources": [
+    "bucket-apps-api-openapi.yml"
+  ],
+  "outputs": [
+    "bucket-apps-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

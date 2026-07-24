@@ -1,0 +1,79 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.reflag.com/supported-languages/overview + npmjs.com/org/reflag + github.com/reflagcom
+note: >-
+  First-party SDKs published under the @reflag npm scope (formerly @bucketco).
+  Versions captured 2026-07-18. Ruby SDK is documented but no first-party gem was
+  found on RubyGems; a community/first-party .NET SDK exists on NuGet.
+packages:
+- language: javascript
+  registry: npm
+  name: "@reflag/react-sdk"
+  url: https://www.npmjs.com/package/@reflag/react-sdk
+  install: npm install @reflag/react-sdk
+  version: 1.5.5
+  official: true
+- language: javascript
+  registry: npm
+  name: "@reflag/react-native-sdk"
+  url: https://www.npmjs.com/package/@reflag/react-native-sdk
+  install: npm install @reflag/react-native-sdk
+  version: 0.2.5
+  official: true
+- language: javascript
+  registry: npm
+  name: "@reflag/vue-sdk"
+  url: https://www.npmjs.com/package/@reflag/vue-sdk
+  install: npm install @reflag/vue-sdk
+  version: 1.4.4
+  official: true
+- language: javascript
+  registry: npm
+  name: "@reflag/browser-sdk"
+  url: https://www.npmjs.com/package/@reflag/browser-sdk
+  install: npm install @reflag/browser-sdk
+  version: 1.5.4
+  official: true
+- language: javascript
+  registry: npm
+  name: "@reflag/node-sdk"
+  url: https://www.npmjs.com/package/@reflag/node-sdk
+  install: npm install @reflag/node-sdk
+  version: 1.7.0
+  official: true
+- language: javascript
+  registry: npm
+  name: "@reflag/next-js"
+  url: https://www.npmjs.com/package/@reflag/next-js
+  install: npm install @reflag/next-js
+  official: true
+- language: javascript
+  registry: npm
+  name: "@reflag/openfeature-browser-provider"
+  url: https://www.npmjs.com/package/@reflag/openfeature-browser-provider
+  install: npm install @reflag/openfeature-browser-provider
+  version: 1.3.10
+  official: true
+- language: javascript
+  registry: npm
+  name: "@reflag/openfeature-node-provider"
+  url: https://www.npmjs.com/package/@reflag/openfeature-node-provider
+  install: npm install @reflag/openfeature-node-provider
+  version: 1.2.1
+  official: true
+- language: javascript
+  registry: npm
+  name: "@reflag/cli"
+  url: https://www.npmjs.com/package/@reflag/cli
+  install: npm install --save-dev @reflag/cli
+  version: 1.0.4
+  official: true
+  kind: cli
+- language: dotnet
+  registry: nuget
+  name: Reflag.RuntimeSDK
+  url: https://www.nuget.org/packages/Reflag.RuntimeSDK
+  install: dotnet add package Reflag.RuntimeSDK
+  version: 0.1.0
+  official: true
+  source_repo: https://github.com/reflagcom/dotnet-sdk

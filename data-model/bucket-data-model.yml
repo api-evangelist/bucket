@@ -1,0 +1,47 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/bucket-management-openapi-original.json
+note: >-
+  Entity-relationship graph derived from the Management API paths, id parameters
+  and component schemas. Ids use dot/path scoping: orgId > appId > envId, with
+  flags addressed by flagId or flagKey and targeting scoped per environment,
+  company, or user.
+entities:
+- name: Organization
+  id: orgId
+  relationships:
+  - { type: has_many, target: App, via: orgId }
+- name: App
+  id: appId
+  relationships:
+  - { type: belongs_to, target: Organization, via: orgId }
+  - { type: has_many, target: Environment, via: appId }
+  - { type: has_many, target: Flag, via: appId }
+- name: Environment
+  id: envId
+  relationships:
+  - { type: belongs_to, target: App, via: appId }
+- name: Flag
+  id: flagId
+  key: flagKey
+  relationships:
+  - { type: belongs_to, target: App, via: appId }
+  - { type: has_many, target: FlagTargeting, via: 'flagKey + envId' }
+- name: FlagTargeting
+  relationships:
+  - { type: belongs_to, target: Flag, via: flagKey }
+  - { type: belongs_to, target: Environment, via: envId }
+- name: Company
+  id: companyId
+  relationships:
+  - { type: has_many, target: EntityFlag, via: 'appId + envId + companyId' }
+- name: User
+  id: userId
+  relationships:
+  - { type: has_many, target: EntityFlag, via: 'appId + envId + userId' }
+- name: EntityFlag
+  note: A flag value evaluated/overridden for a specific company or user in an environment.
+- name: Segment
+  id: segmentId
+- name: Stage
+  id: stageId

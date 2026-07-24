@@ -1,0 +1,46 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/bucket-management-openapi-original.json
+format: provider-envelope
+note: >-
+  The Reflag Management API returns errors as application/json (NOT
+  application/problem+json / RFC 9457). The envelope is
+  {"error": {"code": <enum>, "message": <string>}, "issues": {<field>: [<msg>]}}.
+  Every operation declares 400/401/403/404 responses. HTTP-status mappings below
+  are derived from the response set; the string codes are the ErrorResponse enum.
+envelope:
+  error:
+    code: string (enum, see codes[])
+    message: human-readable string
+  issues: "map of field (dot-notation) -> array of validation messages (optional)"
+http_statuses:
+- status: 400
+  description: Bad Request
+- status: 401
+  description: Unauthorized
+- status: 403
+  description: Forbidden
+- status: 404
+  description: Requested resource, or its parent, not found
+codes:
+- code: invalid_request
+  meaning: The request was malformed or failed validation (see issues[]).
+  typical_status: 400
+- code: unauthenticated
+  meaning: Missing or invalid API key / bearer credential.
+  typical_status: 401
+- code: unauthorized
+  meaning: Authenticated but not permitted (API key lacks the required scope).
+  typical_status: 403
+- code: not_allowed
+  meaning: The operation is not permitted in the current state/context.
+  typical_status: 403
+- code: not_found
+  meaning: The requested resource or its parent does not exist.
+  typical_status: 404
+- code: not_available
+  meaning: The resource or capability is not available.
+- code: not_possible
+  meaning: The requested change cannot be applied.
+- code: unknown_error
+  meaning: An unexpected server error occurred.

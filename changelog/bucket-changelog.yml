@@ -1,0 +1,35 @@
+generated: '2026-07-18'
+method: searched
+source: https://reflag.com/changelog
+scheme: dated-entries + semver SDK releases
+current:
+  management_api: 3.0.1
+entries:
+- date: '2026-05-29'
+  title: Client-side live flag updates
+  type: feature
+  highlights: Real-time flag changes propagate to browsers and mobile apps without page reload.
+- date: '2026-04-19'
+  title: Live flag updates, downtime protection and more
+  type: feature
+  highlights: Node SDK persistent connections, fallback storage, and a new testing API.
+- date: '2026-04-06'
+  title: 'Targeting timeline: Changes display mode'
+  type: feature
+  highlights: New visualization for tracking modifications to targeting rules.
+- date: '2026-03-23'
+  title: Management SDK (beta)
+  type: feature
+  highlights: TypeScript SDK for automating flag operations and account management.
+- date: '2026-03-23'
+  title: Renaming our APIs
+  type: breaking
+  highlights: Public/REST APIs renamed to "Runtime API" and "Management API".
+- date: '2026-03-09'
+  title: Notification policies for Slack and Linear
+  type: feature
+  highlights: Configurable notification defaults for targeting updates across environments.
+- date: '2026-03-02'
+  title: User Details Page
+  type: feature
+  highlights: Individual user flag inspection matching company-level functionality.

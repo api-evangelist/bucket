@@ -1,0 +1,29 @@
+generated: '2026-07-18'
+method: searched
+source: https://reflag.com/changelog + https://status.reflag.com + https://docs.reflag.com/api/reflag-rest-api
+versioning:
+  scheme: openapi-info-version
+  management_api_version: 3.0.1
+  note: >-
+    The Management API OpenAPI carries info.version 3.0.1. In Mar 2026 the public
+    APIs were renamed to "Runtime API" and "Management API" (a breaking change per
+    the changelog). SDKs are versioned with semver under the @reflag npm scope.
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  note: >-
+    No formal dated deprecation/sunset policy (RFC 8594) was found published. A
+    product capability for feature-FLAG lifecycle (self-cleaning flags, archival,
+    AI code clean-up) exists but is distinct from API deprecation policy.
+status_page: https://status.reflag.com
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    Local flag evaluation + fallback storage give downtime protection at the SDK
+    layer; no published uptime SLA number was found.
+data_residency:
+  eu_option: true
+  eu_endpoint: https://front-eu.reflag.com
+changelog: https://reflag.com/changelog
+deprecated_operations: []

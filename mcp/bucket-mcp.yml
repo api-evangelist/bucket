@@ -1,0 +1,49 @@
+generated: '2026-07-18'
+method: searched
+status: published
+source: https://docs.reflag.com/api/mcp
+server:
+  name: reflag
+  transport: http
+  url: https://app.reflag.com/api/mcp
+  auth: OAuth (Clerk); clients without native support can use the mcp-remote npm bridge
+description: >-
+  Official hosted/remote MCP server that connects an AI coding agent in the
+  editor to a Reflag account, letting it interpret and manage feature flags and
+  understand their state and relationships within the codebase.
+install:
+  one_click:
+  - Cursor deep link
+  - VSCode deep link
+  cli: npx reflag mcp
+  manual: Add the MCP server config (mcpServers) to the editor settings
+  bridge: https://www.npmjs.com/package/mcp-remote
+clients:
+- Cursor
+- VSCode
+- any MCP-capable editor/agent
+tools:
+  note: >-
+    The provider does not publish an explicit tool list; tools are exposed by the
+    hosted server for reading and managing feature flags. Candidate tools below
+    are derived from the Management API operations as a reference, not an
+    authoritative manifest.
+  status: candidate
+  derived_from: openapi/bucket-management-openapi-original.json
+  candidates:
+  - name: list_apps
+    source_operation: openapi/bucket-management-openapi-original.json#listApps
+  - name: get_app
+    source_operation: openapi/bucket-management-openapi-original.json#getApp
+  - name: list_flags
+    source_operation: openapi/bucket-management-openapi-original.json#listFlags
+  - name: create_flag
+    source_operation: openapi/bucket-management-openapi-original.json#createFlag
+  - name: update_flag
+    source_operation: openapi/bucket-management-openapi-original.json#updateFlag
+  - name: get_flag_targeting
+    source_operation: openapi/bucket-management-openapi-original.json#getFlagTargeting
+  - name: get_company_flags
+    source_operation: openapi/bucket-management-openapi-original.json#getCompanyFlags
+  - name: update_company_flags
+    source_operation: openapi/bucket-management-openapi-original.json#updateCompanyFlags

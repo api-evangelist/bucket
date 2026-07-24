@@ -1,8 +1,17 @@
 aid: bucket
 name: Bucket
-description: Bucket is a company surfaced as a portfolio company of 500-global, creandum and added to
-  the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Bucket (rebranded to Reflag in 2026, reflag.com) is a TypeScript-first feature
+  management platform built for B2B SaaS teams. It provides feature flags with
+  self-cleaning lifecycle automation, AI/agent integration via a hosted MCP
+  server, strongly typed SDKs for React, React Native, Vue, Next.js, Node.js and
+  the browser, OpenFeature providers, local flag evaluation for zero-latency and
+  downtime protection, feature entitlements, in-app feedback collection, and
+  deep integrations with Linear, Slack, GitHub, Datadog, Vercel and analytics
+  tools. The platform exposes two APIs — a Runtime API for evaluating flags for
+  users and companies at request time, and a Management API for programmatically
+  managing apps, environments, flags and targeting rules from CI/CD. Backed by
+  500 Global and Creandum.
 url: https://raw.githubusercontent.com/api-evangelist/bucket/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,17 +20,128 @@ x-backed-by:
 - creandum
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-rebrand: Bucket (bucket.co) rebranded to Reflag (reflag.com) in 2026; likebucket.com no longer resolves.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://cdn.prod.website-files.com/68a872edf3df6064de547670/68b8414134c540f12c2928bc_reflag-dynamic-favicon.svg
 tags:
 - Company
-apis: []
+- Feature Flags
+- Feature Management
+- Feature Flagging
+- Developer Tools
+- SaaS
+- Entitlements
+- Experimentation
+- MCP
+- Agent Ready
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- name: Reflag Runtime API
+  description: >-
+    JSON-over-HTTP API browsers and backends use at runtime to fetch evaluated and enabled flags, and
+    to send users, companies and feature-usage events. Publishable-key (client) or secret-key (server)
+    bearer auth; EU point of presence at front-eu.reflag.com.
+  humanURL: https://docs.reflag.com/api/public-api
+  baseURL: https://front.reflag.com
+- aid: bucket:bucket-apps-api
+  name: Bucket Apps API
+  description: The Apps API from Bucket — 9 operation(s) for apps.
+  humanURL: https://docs.reflag.com/api/reflag-rest-api
+  baseURL: https://app.reflag.com/api
+  tags:
+  - Apps
+  properties:
+  - type: OpenAPI
+    url: openapi/bucket-apps-api-openapi.yml
+  - type: ErrorCatalog
+    url: errors/bucket-error-codes.yml
+  - type: DataModel
+    url: data-model/bucket-data-model.yml
 common:
+- type: TrustCenter
+  url: security/bucket-trust-center.yml
 - type: Website
-  url: https://likebucket.com
+  url: https://reflag.com
+- type: DeveloperPortal
+  url: https://docs.reflag.com
+- type: Documentation
+  url: https://docs.reflag.com
+- type: APIReference
+  url: https://docs.reflag.com/api/reflag-rest-api/reflag-api-reference
+- type: GettingStarted
+  url: https://docs.reflag.com/welcome/readme
+- type: Blog
+  url: https://reflag.com/blog
+- type: ChangeLog
+  url: https://reflag.com/changelog
+- type: Pricing
+  url: https://reflag.com/pricing
+- type: SignUp
+  url: https://app.reflag.com/signup
+- type: Login
+  url: https://app.reflag.com/login
+- type: TermsOfService
+  url: https://reflag.com/legal/terms
+- type: PrivacyPolicy
+  url: https://reflag.com/legal/privacy-policy
+- type: GitHubOrganization
+  url: https://github.com/reflagcom
+- type: StatusPage
+  url: https://status.reflag.com
+- type: Security
+  url: https://reflag.com/legal/security-policy
+- type: Compliance
+  url: https://reflag.com/security
+- type: Packages
+  url: packages/bucket-packages.yml
+- type: SDKs
+  url: packages/bucket-packages.yml
+- type: CLI
+  url: cli/bucket-cli.yml
+- type: MCPServer
+  url: mcp/bucket-mcp.yml
+- type: LLMsTxt
+  url: llms/bucket-llms.txt
+- type: WellKnown
+  url: well-known/bucket-well-known.yml
+- type: Authentication
+  url: authentication/bucket-authentication.yml
+- type: Conventions
+  url: conventions/bucket-conventions.yml
+- type: Conformance
+  url: conformance/bucket-conformance.yml
+- type: Lifecycle
+  url: lifecycle/bucket-lifecycle.yml
+- type: Components
+  url: components/bucket-components.yml
+- type: DomainSecurity
+  url: security/bucket-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/bucket-vulnerability-disclosure.yml
+- type: AgenticAccess
+  url: agentic-access/bucket-agentic-access.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

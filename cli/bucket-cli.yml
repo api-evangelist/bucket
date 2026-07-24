@@ -1,0 +1,38 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.reflag.com/api/cli
+name: Reflag CLI
+binary: reflag
+package: "@reflag/cli"
+install:
+- npm install --save-dev @reflag/cli
+- npx reflag <command>
+auth:
+  interactive: reflag login / reflag logout
+  ci: REFLAG_API_KEY env var, or --api-key flag
+config_file: reflag.config.json
+commands:
+- name: new
+  purpose: All-in-one setup — init, create a flag, and generate types in one command.
+- name: init
+  purpose: Create reflag.config.json in the project.
+- name: login
+  purpose: Authenticate with Reflag account credentials.
+- name: logout
+  purpose: Clear stored credentials.
+- name: flags
+  purpose: Manage flags — create, list, and generate TypeScript types.
+  subcommands:
+  - flags create
+  - flags list
+  - flags types
+- name: apps
+  purpose: Manage Reflag applications.
+- name: rules
+  purpose: Configure AI/editor rules for Cursor or GitHub Copilot integration.
+- name: mcp
+  purpose: Configure the Reflag MCP server connection for AI editors.
+key_flows:
+- Quick start — npx reflag new (init + first flag + types).
+- CI/CD type generation — npx reflag flags types with REFLAG_API_KEY.
+- Wire the MCP server — npx reflag mcp.

@@ -1,0 +1,12 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/bucket-management-openapi-original.json + docs.reflag.com
+skills:
+- file: bucket-create-and-configure-flag.md
+  name: Create and configure a feature flag
+  api: openapi/bucket-management-openapi-original.json
+  operations: [listApps, listFlags, createFlag, updateFlag]
+- file: bucket-target-company-and-user.md
+  name: Target a flag to a company or user
+  api: openapi/bucket-management-openapi-original.json
+  operations: [getFlagTargeting, getCompanyFlags, updateCompanyFlags, getUserFlags, updateUserFlags]

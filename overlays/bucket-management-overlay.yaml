@@ -1,0 +1,27 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Reflag (Bucket) Management API
+  version: 1.0.0
+extends: openapi/bucket-management-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: bucket
+    x-apievangelist-rebrand: Bucket rebranded to Reflag (reflag.com) in 2026
+    x-apievangelist-artifacts:
+      authentication: authentication/bucket-authentication.yml
+      errors: errors/bucket-error-codes.yml
+      conventions: conventions/bucket-conventions.yml
+      data-model: data-model/bucket-data-model.yml
+      lifecycle: lifecycle/bucket-lifecycle.yml
+- target: $.info
+  update:
+    x-apievangelist-tags:
+    - Feature Flags
+    - Feature Management
+    - Entitlements
+- target: $.paths['/apps/{appId}/flags'].post
+  update:
+    x-apievangelist-note: >-
+      createFlag is the primary write operation; the Reflag CLI and MCP server
+      wrap this to create typed flags from the editor/CI.

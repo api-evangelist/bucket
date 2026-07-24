@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: searched
+source: live probes of /.well-known/* across Reflag hosts
+hosts:
+- host: https://app.reflag.com
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: bucket-oauth-authorization-server.json
+    note: RFC 8414 — authorization-server metadata (Clerk-backed, issuer https://clerk.reflag.com)
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://clerk.reflag.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: >-
+      OIDC discovery for the Clerk identity provider that fronts Reflag app
+      login (not saved as a raw file; identity-provider metadata, not the API).
+- host: https://reflag.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://front.reflag.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404

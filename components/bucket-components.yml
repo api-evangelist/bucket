@@ -1,0 +1,26 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.reflag.com/product-handbook/launch-monitor + browser/react SDK docs
+note: >-
+  Client-side / embeddable UI surfaces shipped by Reflag, distinct from the
+  server-side SDKs in packages/. Loaded via the browser and React SDKs.
+components:
+- family: Toolbar
+  name: Reflag Toolbar
+  description: >-
+    In-app developer toolbar for locally overriding and testing flag states in a
+    running app during development.
+  loader: "@reflag/browser-sdk / @reflag/react-sdk"
+  docs: https://docs.reflag.com/welcome/readme
+- family: Feedback
+  name: Give-feedback button
+  description: >-
+    Embeddable in-app feedback button added in a few lines via the Reflag SDKs to
+    collect qualitative feedback tied to a feature.
+  loader: "@reflag/browser-sdk / @reflag/react-sdk"
+  docs: https://docs.reflag.com/product-handbook/launch-monitor/give-feedback-button
+- family: Feedback
+  name: Automated feedback surveys
+  description: In-app automated feedback surveys triggered around feature launches.
+  loader: "@reflag/browser-sdk"
+  docs: https://docs.reflag.com/product-handbook/launch-monitor/automated-feedback-surveys

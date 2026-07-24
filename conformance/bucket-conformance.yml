@@ -1,0 +1,32 @@
+generated: '2026-07-18'
+method: searched
+source: https://reflag.com/security + openapi/bucket-management-openapi-original.json
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    App login uses OAuth 2.0 via Clerk (/.well-known/oauth-authorization-server,
+    authorization_code + refresh_token grants, PKCE-capable).
+- id: oidc
+  conforms: true
+  evidence: clerk.reflag.com publishes /.well-known/openid-configuration (OIDC discovery)
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: app.reflag.com/.well-known/oauth-authorization-server returns RFC 8414 metadata
+- id: openfeature
+  conforms: true
+  evidence: official OpenFeature browser and Node.js providers (@reflag/openfeature-*-provider)
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors returned as application/json custom envelope, not application/problem+json
+- id: gdpr
+  conforms: true
+  evidence: GDPR compliant; EU data-residency option (front-eu.reflag.com, EU-hosted data)
+- id: soc2-type-2
+  conforms: false
+  status: pending
+  evidence: SOC 2 listed as pending on reflag.com/security
+- id: iso-27001
+  conforms: false
+  status: pending
+  evidence: ISO 27001 listed as pending on reflag.com/security

@@ -76,6 +76,8 @@ apis:
   - type: DataModel
     url: data-model/bucket-data-model.yml
 common:
+- type: Overlay
+  url: overlays/bucket-management-overlay.yaml
 - type: TrustCenter
   url: security/bucket-trust-center.yml
 - type: Website

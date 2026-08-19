@@ -1,0 +1,351 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Reflag Management Apps API",
+    "version": "3.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Apps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get details of an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.reflag.com/api/apps/:appId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific application by its identifier"
+        },
+        {
+          "info": {
+            "name": "List of applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.reflag.com/api/apps",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve all accessible applications"
+        },
+        {
+          "info": {
+            "name": "List environments for application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.reflag.com/api/apps/:appId/environments",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order applied to the sorting column"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "The column to sort by"
+              }
+            ]
+          },
+          "docs": "Retrieve all environments for a specific application"
+        },
+        {
+          "info": {
+            "name": "Get environment details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.reflag.com/api/apps/:appId/environments/:envId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "Environment identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific environment"
+        },
+        {
+          "info": {
+            "name": "List flags for application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.reflag.com/api/apps/:appId/flags",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve all flags for a specific application"
+        },
+        {
+          "info": {
+            "name": "Create a flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.reflag.com/api/apps/:appId/flags",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new flag in the application. Returns the created flag details."
+        },
+        {
+          "info": {
+            "name": "Update a flag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.reflag.com/api/apps/:appId/flags/:flagId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "flagId",
+                "value": "",
+                "type": "path",
+                "description": "Flag ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing flag"
+        },
+        {
+          "info": {
+            "name": "Get flag targeting for an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.reflag.com/api/apps/:appId/flags/:flagKey/targeting/:envId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "flagKey",
+                "value": "",
+                "type": "path",
+                "description": "Unique flag key"
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "Environment identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve targeting for a flag in an environment"
+        },
+        {
+          "info": {
+            "name": "Get flags for a company",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.reflag.com/api/apps/:appId/envs/:envId/companies/:companyId/flags",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "Environment identifier"
+              },
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "Company ID within your application"
+              }
+            ]
+          },
+          "docs": "Retrieve all flags with their targeting status for a specific company"
+        },
+        {
+          "info": {
+            "name": "Update flag targeting for a company",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.reflag.com/api/apps/:appId/envs/:envId/companies/:companyId/flags",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "Environment identifier"
+              },
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "Company ID within your application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update specific targeting for flags for a company in an environment"
+        },
+        {
+          "info": {
+            "name": "Get flags for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.reflag.com/api/apps/:appId/envs/:envId/users/:userId/flags",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "Environment identifier"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID within your application"
+              }
+            ]
+          },
+          "docs": "Retrieve all flags with their targeting status for a specific user"
+        },
+        {
+          "info": {
+            "name": "Update flag targeting for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.reflag.com/api/apps/:appId/envs/:envId/users/:userId/flags",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "App identifier"
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "Environment identifier"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID within your application"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update specific targeting for flags for a user in an environment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

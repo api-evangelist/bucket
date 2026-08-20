@@ -43,6 +43,17 @@ tags:
 - Feature Management
 - Feature Flagging
 - Developer Tools
+- Software-as-a-Service
+- Entitlements
+- Experimentation
+- MCP
+- Agent Ready
+tags_raw:
+- Company
+- Feature Flags
+- Feature Management
+- Feature Flagging
+- Developer Tools
 - SaaS
 - Entitlements
 - Experimentation
@@ -67,6 +78,8 @@ apis:
   humanURL: https://docs.reflag.com/api/reflag-rest-api
   baseURL: https://app.reflag.com/api
   tags:
+  - Application
+  tags_raw:
   - Apps
   properties:
   - type: OpenAPI

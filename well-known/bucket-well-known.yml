@@ -1,4 +1,4 @@
-generated: '2026-07-18'
+generated: '2026-09-19'
 method: searched
 source: live probes of /.well-known/* across Reflag hosts
 hosts:
@@ -16,13 +16,22 @@ hosts:
     status: 404
   - path: /.well-known/ai-plugin.json
     status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: bucket-app-oauth-protected-resource.json
+    bytes: 670
+  path_echo_control: passed
 - host: https://clerk.reflag.com
   documents:
   - path: /.well-known/openid-configuration
     status: 200
-    note: >-
-      OIDC discovery for the Clerk identity provider that fronts Reflag app
-      login (not saved as a raw file; identity-provider metadata, not the API).
+    note: OIDC discovery for the Clerk identity provider that fronts Reflag app login (not saved as a
+      raw file; identity-provider metadata, not the API).
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: bucket-clerk-oauth-authorization-server.json
+    bytes: 1185
+  path_echo_control: passed
 - host: https://reflag.com
   documents:
   - path: /.well-known/security.txt
@@ -31,3 +40,19 @@ hosts:
   documents:
   - path: /.well-known/security.txt
     status: 404
+x-mcp-probe:
+  probed: '2026-09-19'
+  issue: roadmap#321, roadmap#337
+  documents:
+  - host: https://app.reflag.com
+    path: /.well-known/oauth-protected-resource
+    file: bucket-app-oauth-protected-resource.json
+  - host: https://clerk.reflag.com
+    path: /.well-known/oauth-authorization-server
+    file: bucket-clerk-oauth-authorization-server.json
+  validated_on: resource (RFC 9728) / issuer (RFC 8414, OIDC)
+  negative_control: one per host; a 2xx JSON object at an impossible path discards the host
+note: 'MCP-host OAuth discovery added 2026-09-19 (roadmap#321/#337): the harvest visits a provider''s
+  primary hosts, and RFC 9728 protected-resource metadata lives on the MCP host, so these documents existed
+  and were invisible to the scorer. Fetched live and validated on `resource`/`issuer`; one negative control
+  per host.'

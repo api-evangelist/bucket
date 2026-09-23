@@ -1,7 +1,7 @@
 {
   "provider": "bucket",
   "sources": [
-    "bucket-apps-api-openapi.yml"
+    "_original/bucket-management-openapi-original.json"
   ],
   "outputs": [
     "bucket-apps-api-openapi.yml"
@@ -9,6 +9,25 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "bucket-management-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "bucket-management-openapi-original.json: tagged paths GET /apps/{appId} -> Apps",
+    "bucket-management-openapi-original.json: tagged paths GET /apps -> Apps",
+    "bucket-management-openapi-original.json: tagged paths GET /apps/{appId}/environments -> Apps",
+    "bucket-management-openapi-original.json: tagged paths GET /apps/{appId}/environments/{envId} -> Apps",
+    "bucket-management-openapi-original.json: tagged paths GET /apps/{appId}/flags -> Apps",
+    "bucket-management-openapi-original.json: tagged paths POST /apps/{appId}/flags -> Apps",
+    "bucket-management-openapi-original.json: tagged paths PATCH /apps/{appId}/flags/{flagId} -> Apps",
+    "bucket-management-openapi-original.json: tagged paths GET /apps/{appId}/flags/{flagKey}/targeting/{envId} -> Apps",
+    "bucket-management-openapi-original.json: tagged paths GET /apps/{appId}/envs/{envId}/companies/{companyId}/flags -> Apps",
+    "bucket-management-openapi-original.json: tagged paths PATCH /apps/{appId}/envs/{envId}/companies/{companyId}/flags -> Apps",
+    "bucket-management-openapi-original.json: tagged paths GET /apps/{appId}/envs/{envId}/users/{userId}/flags -> Apps",
+    "bucket-management-openapi-original.json: tagged paths PATCH /apps/{appId}/envs/{envId}/users/{userId}/flags -> Apps",
+    "bucket-management-openapi-original.json: declared missing tag: Apps",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "bucket-apps-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -856,62 +856,27 @@ paths:
       - Apps
 components:
   schemas:
-    environmentHeader:
-      description: Basic environment information
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/envId'
-        name:
-          description: Environment name
-          type: string
-        isProduction:
-          description: Whether the environment is a production environment
-          type: boolean
-        order:
-          description: Environment order in the app (zero-indexed)
-          type: integer
-        flagStateVersion:
-          description: Environment version incremented when flag state changes
-          type: integer
-      required:
-      - id
-      - name
-      - isProduction
-      - order
-      - flagStateVersion
-      additionalProperties: false
-    segmentId:
-      description: Segment identifier
-      type: string
-      minLength: 1
     orgId:
       description: Organization identifier
       type: string
       minLength: 1
-    reflagUserHeader:
-      description: Reflag user's basic information
+    environmentHeaderCollection:
+      description: Collection of Basic environment information
       type: object
       properties:
-        id:
-          $ref: '#/components/schemas/reflagUserId'
-        name:
-          description: User's name
-          type: string
-          minLength: 1
-        email:
-          description: User's email
-          type: string
-          format: email
-          pattern: ^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$
-        avatarUrl:
-          description: User's avatar URL
-          type: string
-          format: uri
+        data:
+          description: The individual items in the collection
+          type: array
+          items:
+            $ref: '#/components/schemas/environmentHeader'
+        sortOrder:
+          $ref: '#/components/schemas/sortOrder'
+        sortBy:
+          $ref: '#/components/schemas/environmentHeaderSortByColumn'
       required:
-      - id
-      - name
-      - email
+      - data
+      - sortOrder
+      - sortBy
       additionalProperties: false
     flagTargeting:
       description: Flag targeting information and its audience
@@ -943,40 +908,6 @@ components:
       description: Reflag user identifier
       type: string
       minLength: 1
-    environmentHeaderCollection:
-      description: Collection of Basic environment information
-      type: object
-      properties:
-        data:
-          description: The individual items in the collection
-          type: array
-          items:
-            $ref: '#/components/schemas/environmentHeader'
-        sortOrder:
-          $ref: '#/components/schemas/sortOrder'
-        sortBy:
-          $ref: '#/components/schemas/environmentHeaderSortByColumn'
-      required:
-      - data
-      - sortOrder
-      - sortBy
-      additionalProperties: false
-    flagKey:
-      description: Unique flag key
-      type: string
-      minLength: 1
-    appHeaderCollection:
-      description: Collection of Basic app information
-      type: object
-      properties:
-        data:
-          description: The individual items in the collection
-          type: array
-          items:
-            $ref: '#/components/schemas/appHeader'
-      required:
-      - data
-      additionalProperties: false
     ErrorResponse:
       description: The error response, including individual issues, if applicable
       type: object
@@ -1019,73 +950,378 @@ components:
       required:
       - error
       additionalProperties: false
+    segmentHeader:
+      description: Segment's basic information
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/segmentId'
+        name:
+          description: Segment name
+          type: string
+          minLength: 1
+        type:
+          $ref: '#/components/schemas/segmentType'
+      required:
+      - id
+      - name
+      - type
+      additionalProperties: false
+    flagKey:
+      description: Unique flag key
+      type: string
+      minLength: 1
+    appHeaderCollection:
+      description: Collection of Basic app information
+      type: object
+      properties:
+        data:
+          description: The individual items in the collection
+          type: array
+          items:
+            $ref: '#/components/schemas/appHeader'
+      required:
+      - data
+      additionalProperties: false
+    appHeader:
+      description: Basic app information
+      type: object
+      properties:
+        org:
+          $ref: '#/components/schemas/orgHeader'
+        id:
+          $ref: '#/components/schemas/appId'
+        name:
+          description: App name
+          type: string
+        demo:
+          description: Whether the app is a demo app
+          type: boolean
+        flagKeyFormat:
+          $ref: '#/components/schemas/flagKeyFormat'
+        environments:
+          description: Environments within the app
+          type: array
+          items:
+            $ref: '#/components/schemas/environmentHeader'
+      required:
+      - org
+      - id
+      - name
+      - demo
+      - flagKeyFormat
+      - environments
+      additionalProperties: false
+    appId:
+      description: App identifier
+      type: string
+      minLength: 1
+    environmentHeaderSortByColumn:
+      description: The column to sort by
+      default: order
+      type: string
+      enum:
+      - name
+      - order
+    stageId:
+      description: Stage identifier
+      type: string
+      minLength: 1
+    companyId:
+      description: Company ID within your application
+      type: string
+      minLength: 1
+    orgHeader:
+      description: Organization's basic information
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/orgId'
+        name:
+          description: Organization name
+          type: string
+          minLength: 1
+      required:
+      - id
+      - name
+      additionalProperties: false
+    flagId:
+      description: Flag ID
+      type: string
+      minLength: 1
+    flagHeaderCollection:
+      description: Collection response containing flags
+      type: object
+      properties:
+        data:
+          description: Page of the collection of flags
+          type: array
+          items:
+            $ref: '#/components/schemas/flagHeader'
+        totalCount:
+          description: Total number of flags in collection
+          type: integer
+        pageSize:
+          description: Page size
+          type: integer
+        pageIndex:
+          description: Page index
+          type: integer
+        sortBy:
+          description: Sort by
+          type: string
+          enum:
+          - name
+          - key
+          - stage
+          - autoFeedbackSurveysEnabled
+          - createdAt
+          - rolledOutToEveryoneAt
+          - environmentStatus
+          - owner
+          - lastCheck
+          - lastTrack
+          - stale
+          - archivingChecks
+        sortOrder:
+          description: Sort order
+          $ref: '#/components/schemas/sortOrder'
+      required:
+      - data
+      - totalCount
+      - pageSize
+      - pageIndex
+      - sortBy
+      - sortOrder
+      additionalProperties: false
+    environment:
+      description: Environment details
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/envId'
+        name:
+          description: Environment name
+          type: string
+        isProduction:
+          description: Whether the environment is a production environment
+          type: boolean
+        order:
+          description: Environment order in the app (zero-indexed)
+          type: integer
+        flagStateVersion:
+          description: Environment version incremented when flag state changes
+          type: integer
+        sdkAccess:
+          description: SDK access details
+          type: object
+          properties:
+            publishableKey:
+              description: Publishable key
+              type: string
+              minLength: 1
+              maxLength: 36
+            secretKey:
+              description: Secret key
+              type: string
+              minLength: 1
+              maxLength: 36
+          required:
+          - publishableKey
+          - secretKey
+          additionalProperties: false
+      required:
+      - id
+      - name
+      - isProduction
+      - order
+      - flagStateVersion
+      - sdkAccess
+      additionalProperties: false
+    entityFlagsResponse:
+      description: Response containing flags for an entity
+      type: object
+      properties:
+        data:
+          description: List of flags with their enabled status
+          type: array
+          items:
+            $ref: '#/components/schemas/entityFlag'
+        totalCount:
+          description: Total number of flags
+          type: integer
+        pageSize:
+          description: Page size
+          type: integer
+        pageIndex:
+          description: Page index
+          type: integer
+      required:
+      - data
+      - totalCount
+      - pageSize
+      - pageIndex
+      additionalProperties: false
+    app:
+      description: App information with related collections
+      type: object
+      properties:
+        org:
+          $ref: '#/components/schemas/orgHeader'
+        id:
+          $ref: '#/components/schemas/appId'
+        name:
+          description: App name
+          type: string
+        demo:
+          description: Whether the app is a demo app
+          type: boolean
+        flagKeyFormat:
+          $ref: '#/components/schemas/flagKeyFormat'
+        environments:
+          description: Environments within the app
+          type: array
+          items:
+            $ref: '#/components/schemas/environment'
+        stages:
+          description: Stages within the app
+          type: array
+          items:
+            $ref: '#/components/schemas/stageHeader'
+        segments:
+          description: Segments within the app
+          type: array
+          items:
+            $ref: '#/components/schemas/segmentHeader'
+      required:
+      - org
+      - id
+      - name
+      - demo
+      - flagKeyFormat
+      - environments
+      - stages
+      - segments
+      additionalProperties: false
+    updateEntityFlagsBody:
+      description: Request body for updating flags for an entity
+      type: object
+      properties:
+        updates:
+          description: List of flag updates to apply
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/entityFlagUpdate'
+        changeDescription:
+          description: Description of the change for audit history
+          type: string
+        notifications:
+          description: Destination list for notifications about the change. Use [] to disable notifications. Omit to use configured defaults.
+          type: array
+          items:
+            type: string
+            enum:
+            - linearComment
+            - slack
+      required:
+      - updates
+    segmentId:
+      description: Segment identifier
+      type: string
+      minLength: 1
     userId:
       description: User ID within your application
       type: string
       minLength: 1
-    flagHeader:
-      description: Basic flag information
+    stageHeader:
+      description: Stage's basic information
       type: object
       properties:
         id:
-          $ref: '#/components/schemas/flagId'
-        key:
-          $ref: '#/components/schemas/flagKey'
+          $ref: '#/components/schemas/stageId'
         name:
-          description: Flag name
+          description: Stage name
           type: string
           minLength: 1
-          maxLength: 255
-        description:
-          description: Flag description
+        color:
+          description: Stage color (HTML color name or hex code)
           type: string
-        stage:
-          $ref: '#/components/schemas/stageHeader'
-        owner:
-          $ref: '#/components/schemas/reflagUserHeader'
-        archived:
-          description: Whether the flag is archived
-          type: boolean
-        stale:
-          description: Whether the flag is stale
-          type: boolean
-        permanent:
-          description: Whether the flag is permanent
-          type: boolean
-        createdAt:
-          description: Timestamp when the flag was created
-          type: string
-        rolledOutToEveryoneAt:
-          description: Timestamp when the flag was rolled out to everyone
-          type: string
-        codeRefsCleanedUp:
-          description: Whether code references for this flag have been cleaned up
-          type: boolean
-        codeRefsMarkedCleanUserName:
-          description: Name of the user who marked code references as cleaned up
-          type: string
-        codeRefsMarkedCleanAt:
-          description: Timestamp when code references were marked as cleaned up
-          type: string
-        lastCheckAt:
-          description: Timestamp when the flag was last checked
-          type: string
-        noRecentChecks:
-          description: Whether the flag has no recent access checks
-          type: boolean
-        lastTrackAt:
-          description: Timestamp when the flag was last tracked
-          type: string
+          minLength: 1
+          maxLength: 64
+        order:
+          description: Stage order
+          type: integer
       required:
       - id
-      - key
       - name
-      - archived
-      - stale
-      - permanent
-      - codeRefsCleanedUp
-      - noRecentChecks
+      - color
+      - order
       additionalProperties: false
+    reflagUserHeader:
+      description: Reflag user's basic information
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/reflagUserId'
+        name:
+          description: User's name
+          type: string
+          minLength: 1
+        email:
+          description: User's email
+          type: string
+          format: email
+          pattern: ^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$
+        avatarUrl:
+          description: User's avatar URL
+          type: string
+          format: uri
+      required:
+      - id
+      - name
+      - email
+      additionalProperties: false
+    entityFlagUpdate:
+      description: Update for a single flag's explicit targeting override
+      type: object
+      properties:
+        flagKey:
+          $ref: '#/components/schemas/flagKey'
+        specificTargetValue:
+          description: Set to true to add a specific-targeting override, or null to remove it
+          anyOf:
+          - type: boolean
+            const: true
+          - type: 'null'
+      required:
+      - flagKey
+      - specificTargetValue
+    envId:
+      description: Environment identifier
+      type: string
+      minLength: 1
+    segmentType:
+      description: Segment type
+      type: string
+      enum:
+      - all
+      - custom
+    flagValue:
+      description: The value of the flag served to the audience.
+      type: string
+      const: 'true'
+    flagKeyFormat:
+      description: The enforced key format when creating flags
+      type: string
+      enum:
+      - custom
+      - pascalCase
+      - camelCase
+      - snakeCaseUpper
+      - snakeCaseLower
+      - kebabCaseUpper
+      - kebabCaseLower
     entityFlag:
       description: Flag information with enabled status for an entity
       type: object
@@ -1156,19 +1392,68 @@ components:
       - lastTrackAt
       - trackCount
       additionalProperties: false
-    orgHeader:
-      description: Organization's basic information
+    flagHeader:
+      description: Basic flag information
       type: object
       properties:
         id:
-          $ref: '#/components/schemas/orgId'
+          $ref: '#/components/schemas/flagId'
+        key:
+          $ref: '#/components/schemas/flagKey'
         name:
-          description: Organization name
+          description: Flag name
           type: string
           minLength: 1
+          maxLength: 255
+        description:
+          description: Flag description
+          type: string
+        stage:
+          $ref: '#/components/schemas/stageHeader'
+        owner:
+          $ref: '#/components/schemas/reflagUserHeader'
+        archived:
+          description: Whether the flag is archived
+          type: boolean
+        stale:
+          description: Whether the flag is stale
+          type: boolean
+        permanent:
+          description: Whether the flag is permanent
+          type: boolean
+        createdAt:
+          description: Timestamp when the flag was created
+          type: string
+        rolledOutToEveryoneAt:
+          description: Timestamp when the flag was rolled out to everyone
+          type: string
+        codeRefsCleanedUp:
+          description: Whether code references for this flag have been cleaned up
+          type: boolean
+        codeRefsMarkedCleanUserName:
+          description: Name of the user who marked code references as cleaned up
+          type: string
+        codeRefsMarkedCleanAt:
+          description: Timestamp when code references were marked as cleaned up
+          type: string
+        lastCheckAt:
+          description: Timestamp when the flag was last checked
+          type: string
+        noRecentChecks:
+          description: Whether the flag has no recent access checks
+          type: boolean
+        lastTrackAt:
+          description: Timestamp when the flag was last tracked
+          type: string
       required:
       - id
+      - key
       - name
+      - archived
+      - stale
+      - permanent
+      - codeRefsCleanedUp
+      - noRecentChecks
       additionalProperties: false
     flagValueTargeting:
       description: Flag targeting value and its audience
@@ -1188,81 +1473,11 @@ components:
       - companyIds
       - userIds
       additionalProperties: false
-    app:
-      description: App information with related collections
-      type: object
-      properties:
-        org:
-          $ref: '#/components/schemas/orgHeader'
-        id:
-          $ref: '#/components/schemas/appId'
-        name:
-          description: App name
-          type: string
-        demo:
-          description: Whether the app is a demo app
-          type: boolean
-        flagKeyFormat:
-          $ref: '#/components/schemas/flagKeyFormat'
-        environments:
-          description: Environments within the app
-          type: array
-          items:
-            $ref: '#/components/schemas/environment'
-        stages:
-          description: Stages within the app
-          type: array
-          items:
-            $ref: '#/components/schemas/stageHeader'
-        segments:
-          description: Segments within the app
-          type: array
-          items:
-            $ref: '#/components/schemas/segmentHeader'
-      required:
-      - org
-      - id
-      - name
-      - demo
-      - flagKeyFormat
-      - environments
-      - stages
-      - segments
-      additionalProperties: false
-    companyId:
-      description: Company ID within your application
-      type: string
-      minLength: 1
-    stageHeader:
-      description: Stage's basic information
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/stageId'
-        name:
-          description: Stage name
-          type: string
-          minLength: 1
-        color:
-          description: Stage color (HTML color name or hex code)
-          type: string
-          minLength: 1
-          maxLength: 64
-        order:
-          description: Stage order
-          type: integer
-      required:
-      - id
-      - name
-      - color
-      - order
-      additionalProperties: false
-    envId:
-      description: Environment identifier
-      type: string
-      minLength: 1
-    environment:
-      description: Environment details
+    flagVersion:
+      description: Flag targeting version
+      type: integer
+    environmentHeader:
+      description: Basic environment information
       type: object
       properties:
         id:
@@ -1279,36 +1494,13 @@ components:
         flagStateVersion:
           description: Environment version incremented when flag state changes
           type: integer
-        sdkAccess:
-          description: SDK access details
-          type: object
-          properties:
-            publishableKey:
-              description: Publishable key
-              type: string
-              minLength: 1
-              maxLength: 36
-            secretKey:
-              description: Secret key
-              type: string
-              minLength: 1
-              maxLength: 36
-          required:
-          - publishableKey
-          - secretKey
-          additionalProperties: false
       required:
       - id
       - name
       - isProduction
       - order
       - flagStateVersion
-      - sdkAccess
       additionalProperties: false
-    stageId:
-      description: Stage identifier
-      type: string
-      minLength: 1
     sortOrder:
       description: Sort order applied to the sorting column
       default: asc
@@ -1316,198 +1508,6 @@ components:
       enum:
       - asc
       - desc
-    flagValue:
-      description: The value of the flag served to the audience.
-      type: string
-      const: 'true'
-    appId:
-      description: App identifier
-      type: string
-      minLength: 1
-    flagId:
-      description: Flag ID
-      type: string
-      minLength: 1
-    segmentType:
-      description: Segment type
-      type: string
-      enum:
-      - all
-      - custom
-    appHeader:
-      description: Basic app information
-      type: object
-      properties:
-        org:
-          $ref: '#/components/schemas/orgHeader'
-        id:
-          $ref: '#/components/schemas/appId'
-        name:
-          description: App name
-          type: string
-        demo:
-          description: Whether the app is a demo app
-          type: boolean
-        flagKeyFormat:
-          $ref: '#/components/schemas/flagKeyFormat'
-        environments:
-          description: Environments within the app
-          type: array
-          items:
-            $ref: '#/components/schemas/environmentHeader'
-      required:
-      - org
-      - id
-      - name
-      - demo
-      - flagKeyFormat
-      - environments
-      additionalProperties: false
-    flagVersion:
-      description: Flag targeting version
-      type: integer
-    flagHeaderCollection:
-      description: Collection response containing flags
-      type: object
-      properties:
-        data:
-          description: Page of the collection of flags
-          type: array
-          items:
-            $ref: '#/components/schemas/flagHeader'
-        totalCount:
-          description: Total number of flags in collection
-          type: integer
-        pageSize:
-          description: Page size
-          type: integer
-        pageIndex:
-          description: Page index
-          type: integer
-        sortBy:
-          description: Sort by
-          type: string
-          enum:
-          - name
-          - key
-          - stage
-          - autoFeedbackSurveysEnabled
-          - createdAt
-          - rolledOutToEveryoneAt
-          - environmentStatus
-          - owner
-          - lastCheck
-          - lastTrack
-          - stale
-          - archivingChecks
-        sortOrder:
-          description: Sort order
-          $ref: '#/components/schemas/sortOrder'
-      required:
-      - data
-      - totalCount
-      - pageSize
-      - pageIndex
-      - sortBy
-      - sortOrder
-      additionalProperties: false
-    entityFlagUpdate:
-      description: Update for a single flag's explicit targeting override
-      type: object
-      properties:
-        flagKey:
-          $ref: '#/components/schemas/flagKey'
-        specificTargetValue:
-          description: Set to true to add a specific-targeting override, or null to remove it
-          anyOf:
-          - type: boolean
-            const: true
-          - type: 'null'
-      required:
-      - flagKey
-      - specificTargetValue
-    updateEntityFlagsBody:
-      description: Request body for updating flags for an entity
-      type: object
-      properties:
-        updates:
-          description: List of flag updates to apply
-          minItems: 1
-          type: array
-          items:
-            $ref: '#/components/schemas/entityFlagUpdate'
-        changeDescription:
-          description: Description of the change for audit history
-          type: string
-        notifications:
-          description: Destination list for notifications about the change. Use [] to disable notifications. Omit to use configured defaults.
-          type: array
-          items:
-            type: string
-            enum:
-            - linearComment
-            - slack
-      required:
-      - updates
-    flagKeyFormat:
-      description: The enforced key format when creating flags
-      type: string
-      enum:
-      - custom
-      - pascalCase
-      - camelCase
-      - snakeCaseUpper
-      - snakeCaseLower
-      - kebabCaseUpper
-      - kebabCaseLower
-    entityFlagsResponse:
-      description: Response containing flags for an entity
-      type: object
-      properties:
-        data:
-          description: List of flags with their enabled status
-          type: array
-          items:
-            $ref: '#/components/schemas/entityFlag'
-        totalCount:
-          description: Total number of flags
-          type: integer
-        pageSize:
-          description: Page size
-          type: integer
-        pageIndex:
-          description: Page index
-          type: integer
-      required:
-      - data
-      - totalCount
-      - pageSize
-      - pageIndex
-      additionalProperties: false
-    environmentHeaderSortByColumn:
-      description: The column to sort by
-      default: order
-      type: string
-      enum:
-      - name
-      - order
-    segmentHeader:
-      description: Segment's basic information
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/segmentId'
-        name:
-          description: Segment name
-          type: string
-          minLength: 1
-        type:
-          $ref: '#/components/schemas/segmentType'
-      required:
-      - id
-      - name
-      - type
-      additionalProperties: false
   securitySchemes:
     APIKey:
       type: http

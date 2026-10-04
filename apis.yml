@@ -105,6 +105,9 @@ apis:
   - type: DataModel
     url: data-model/bucket-data-model.yml
 common:
+- type: CapabilityMap
+  url: capabilities/bucket-capability-edges.yml
+  name: Bucket Business Capability Map
 - type: Overlay
   url: overlays/bucket-management-overlay.yaml
 - type: TrustCenter

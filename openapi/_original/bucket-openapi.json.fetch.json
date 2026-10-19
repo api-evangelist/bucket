@@ -1,0 +1,12 @@
+{
+ "url": "https://app.reflag.com/openapi.json",
+ "final": "https://app.reflag.com/openapi.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 45264,
+ "sha256": "168d1480405803c48ce1369578ab6c6742f54f1c3a8a2aa38934ff97995c4d1e",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "re-archived: the provider's current document replaced a stale archive (roadmap#793); the old files are in openapi/_superseded/2026-10-19-stale"
+}

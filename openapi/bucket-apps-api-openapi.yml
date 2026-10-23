@@ -1897,3 +1897,9 @@ components:
       type: http
       scheme: bearer
       description: API key authentication, for service access
+x-provenance:
+  method: harvested
+  publisher: Bucket
+  source: https://app.reflag.com/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

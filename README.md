@@ -64,6 +64,126 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Bucket is a company surfaced as a portfolio company of 500-global, creandum and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Bucket (rebranded to Reflag in 2026, reflag.com) is a TypeScript-first feature management platform built for B2B SaaS teams. It provides feature flags with self-cleaning lifecycle automation, AI/agent integration via a hosted MCP server, strongly typed SDKs for React, React Native, Vue, Next.js, Node.js and the browser, OpenFeature providers, local flag evaluation for zero-latency and downtime protection, feature entitlements, in-app feedback collection, and deep integrations with Linear, Slack, GitHub, Datadog, Vercel and analytics tools. The platform exposes two APIs — a Runtime API for evaluating flags for users and companies at request time, and a Management API for programmatically managing apps, environments, flags and targeting rules from CI/CD. Backed by 500 Global and Creandum.
 
-Backed by: 500-global, creandum — https://likebucket.com
+**Areas:** Company · Feature Flags · Feature Management · Feature Flagging · Developer Tools · Software-as-a-Service · Entitlements · Experimentation · MCP · Agent Ready
+
+## Bucket on APIs.io
+
+Everything profiled for Bucket is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bucket/](https://apis.io/providers/bucket/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [Reflag Runtime API](https://apis.io/apis/bucket/reflag-runtime-api/) — JSON-over-HTTP API browsers and backends use at runtime to fetch evaluated and enabled flags, and to send users, companies and feature-usage events.…
+- [Bucket Apps API](https://apis.io/apis/bucket/bucket-apps-api/) — The Apps API from Bucket — 9 operation(s) for apps.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [reflag](https://apis.io/servers/bucket/reflag/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Bucket Agentic Access](https://apis.io/agentic-access/bucket/bucket-agentic-access/)
+
+#### Collections (1)
+
+Postman and Open Collection request collections.
+
+- [Reflag Management Apps API](https://apis.io/collections/bucket/open-bucket-apps-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Bucket Management Overlay](https://apis.io/overlays/bucket/bucket-management-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Bucket Authentication](https://apis.io/security/bucket/bucket-authentication/)
+- [Bucket Domain Security](https://apis.io/security/bucket/bucket-domain-security/)
+- [Bucket Trust Center](https://apis.io/security/bucket/bucket-trust-center/)
+- [Bucket Vulnerability Disclosure](https://apis.io/security/bucket/bucket-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://reflag.com)
+- [Documentation](https://docs.reflag.com)
+- [Getting started](https://docs.reflag.com/welcome/readme)
+- [API reference](https://docs.reflag.com/api/reflag-rest-api/reflag-api-reference)
+- [Pricing](https://reflag.com/pricing)
+- [Sign up](https://app.reflag.com/signup)
+- [Changelog](https://reflag.com/changelog)
+- [Blog](https://reflag.com/blog)
+- [Security](https://reflag.com/legal/security-policy)
+- [Compliance](https://reflag.com/security)
+- [Terms of service](https://reflag.com/legal/terms)
+- [Privacy policy](https://reflag.com/legal/privacy-policy)
+- [GitHub](https://github.com/reflagcom)
+- [Status](https://status.reflag.com)
+
+## API Evangelist rating
+
+**Kin Score 54.0** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 50.8 |
+| Contract governance | 18.2 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 68.5 |
+| Access clarity | 53.9 |
+
+**Agent readiness 48.1** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bucket/](https://apis.io/providers/bucket/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Bucket: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bucket/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
